@@ -1,6 +1,6 @@
-package com.simplecrud.controller;
+package com.testconfigurationpoc.controller;
 
-import com.simplecrud.domain.entity.User;
+import com.testconfigurationpoc.domain.entity.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

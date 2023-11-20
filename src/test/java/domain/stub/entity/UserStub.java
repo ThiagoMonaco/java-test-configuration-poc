@@ -1,7 +1,7 @@
 package domain.stub.entity;
 
-import com.simplecrud.domain.entity.Tech;
-import com.simplecrud.domain.entity.User;
+import com.testconfigurationpoc.domain.entity.Tech;
+import com.testconfigurationpoc.domain.entity.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package data.services;
 
-import com.simplecrud.data.dto.CreateUserRequestDto;
-import com.simplecrud.domain.mapper.IDateMapper;
-import com.simplecrud.domain.service.IUserService;
-import com.simplecrud.domain.service.IValidatorService;
+import com.testconfigurationpoc.data.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.domain.mapper.IDateMapper;
+import com.testconfigurationpoc.domain.service.IUserService;
+import com.testconfigurationpoc.domain.service.IValidatorService;
 import configuration.CustomTestConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -76,5 +76,20 @@ public class UserServiceTest {
         userService.createUser(userDto);
 
         verify(validatorServiceStub, times(1)).validateBirthDateIsOlderThanEighteen(expectedLocalDate);
+    }
+
+    @Test
+    @DisplayName("Should throw if birthdate validation throws")
+    void shouldThrowIfBirthdateValidationThrows() {
+        CreateUserRequestDto userDto = mockCreateUserRequestDto();
+        doThrow(new RuntimeException("Birthdate is invalid"))
+                .when(validatorServiceStub)
+                .validateBirthDateIsOlderThanEighteen(any());
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            userService.createUser(userDto);
+        });
+
+        assertEquals("Birthdate is invalid", exception.getMessage());
     }
 }

@@ -1,4 +1,4 @@
-package com.simplecrud.domain.service;
+package com.testconfigurationpoc.domain.service;
 
 import java.time.LocalDate;
 

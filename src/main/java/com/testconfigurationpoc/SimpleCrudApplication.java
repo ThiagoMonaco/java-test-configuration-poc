@@ -1,14 +1,13 @@
-package com.simplecrud;
+package com.testconfigurationpoc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class SimpleCrudApplication {
+public class JavaTestConfigurationPocApplication
 
     public static void main(String[] args) {
-        SpringApplication.run(SimpleCrudApplication.class, args);
+        SpringApplication.run(JavaTestConfigurationPocApplication.class, args);
     }
 
 }

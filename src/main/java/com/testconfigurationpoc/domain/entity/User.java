@@ -1,4 +1,4 @@
-package com.simplecrud.domain.entity;
+package com.testconfigurationpoc.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

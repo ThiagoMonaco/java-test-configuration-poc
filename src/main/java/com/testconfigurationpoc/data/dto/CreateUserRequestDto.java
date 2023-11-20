@@ -1,4 +1,4 @@
-package com.simplecrud.data.dto;
+package com.testconfigurationpoc.data.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

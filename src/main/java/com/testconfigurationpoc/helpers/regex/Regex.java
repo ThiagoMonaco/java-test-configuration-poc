@@ -1,4 +1,4 @@
-package com.simplecrud.helpers.regex;
+package com.testconfigurationpoc.helpers.regex;
 
 public enum Regex {
     PASSWORD("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");

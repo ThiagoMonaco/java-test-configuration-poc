@@ -1,13 +1,11 @@
 package data.mappers;
 
-import com.simplecrud.data.mappers.DateMapperImpl;
-import com.simplecrud.domain.mapper.IDateMapper;
+import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import configuration.CustomTestConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;

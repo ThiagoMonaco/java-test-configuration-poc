@@ -1,6 +1,6 @@
 package data.stubs.mappers;
 
-import com.simplecrud.domain.mapper.IDateMapper;
+import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import org.springframework.boot.test.context.TestComponent;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.simplecrud.domain.mapper;
+package com.testconfigurationpoc.domain.mapper;
 
 import java.time.LocalDate;
 

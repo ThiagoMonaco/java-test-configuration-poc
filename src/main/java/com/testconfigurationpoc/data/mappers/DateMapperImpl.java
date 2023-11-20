@@ -1,6 +1,6 @@
-package com.simplecrud.data.mappers;
+package com.testconfigurationpoc.data.mappers;
 
-import com.simplecrud.domain.mapper.IDateMapper;
+import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

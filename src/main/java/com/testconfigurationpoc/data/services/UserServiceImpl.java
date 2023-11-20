@@ -1,10 +1,10 @@
-package com.simplecrud.data.services;
+package com.testconfigurationpoc.data.services;
 
-import com.simplecrud.data.dto.CreateUserRequestDto;
-import com.simplecrud.domain.entity.User;
-import com.simplecrud.domain.mapper.IDateMapper;
-import com.simplecrud.domain.service.IUserService;
-import com.simplecrud.domain.service.IValidatorService;
+import com.testconfigurationpoc.data.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.domain.entity.User;
+import com.testconfigurationpoc.domain.mapper.IDateMapper;
+import com.testconfigurationpoc.domain.service.IUserService;
+import com.testconfigurationpoc.domain.service.IValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ public class UserServiceImpl implements IUserService {
 
     private final IValidatorService validatorService;
     private final IDateMapper dateMapper;
+
 
     @Autowired
     public UserServiceImpl(

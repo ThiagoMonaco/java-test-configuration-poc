@@ -1,7 +1,7 @@
-package com.simplecrud.data.services;
+package com.testconfigurationpoc.data.services;
 
-import com.simplecrud.domain.service.IValidatorService;
-import com.simplecrud.helpers.regex.Regex;
+import com.testconfigurationpoc.domain.service.IValidatorService;
+import com.testconfigurationpoc.helpers.regex.Regex;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

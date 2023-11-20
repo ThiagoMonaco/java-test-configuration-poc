@@ -11,8 +11,8 @@
     <groupId>com</groupId>
     <artifactId>java-test-configuration-poc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>simple-crud</name>
-    <description>simple-crud</description>
+    <name>java-test-configuration-poc</name>
+    <description>java-test-configuration-poc</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -54,6 +54,12 @@
             <version>2023.0.4</version>
             <scope>import</scope>
             <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.14</version>
         </dependency>
     </dependencies>
 
