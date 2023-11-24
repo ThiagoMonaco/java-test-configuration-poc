@@ -17,7 +17,6 @@ public class UserServiceImpl implements IUserService {
     private final IValidatorService validatorService;
     private final IDateMapper dateMapper;
 
-
     @Autowired
     public UserServiceImpl(
             @Qualifier("validatorService") IValidatorService validatorService,
@@ -35,7 +34,7 @@ public class UserServiceImpl implements IUserService {
         validatorService.validatePassword(request.getPassword());
         LocalDate birthDateLocalDate = dateMapper.mapStringToLocalDate(request.getBirthDate());
         validatorService.validateBirthDateIsOlderThanEighteen(birthDateLocalDate);
-        // repository create user data
+
         // return user data
         return null;
     }
