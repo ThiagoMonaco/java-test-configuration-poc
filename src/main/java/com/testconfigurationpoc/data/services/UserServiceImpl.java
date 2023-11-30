@@ -20,7 +20,6 @@ public class UserServiceImpl implements IUserService {
     private final IDateMapper dateMapper;
     private final UserRepository userRepository;
 
-
     @Override
     public User createUser(CreateUserRequestDto request) {
         if(!validatorService.hasMoreThanThreeCharacters(request.getUsername())) {
