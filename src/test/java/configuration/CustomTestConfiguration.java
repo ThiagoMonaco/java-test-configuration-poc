@@ -36,6 +36,6 @@ public class CustomTestConfiguration {
 
     @Bean
     public IUserService userService(IValidatorService validatorServiceStub, IDateMapper dateMapperStub) {
-        return new UserServiceImpl(validatorServiceStub, dateMapperStub);
+        return new UserServiceImpl(validatorServiceStub, dateMapperStub, null);
     }
 }

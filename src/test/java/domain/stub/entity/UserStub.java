@@ -13,6 +13,7 @@ public final class UserStub {
         List<Tech> techDtoStubs = new ArrayList<>();
         techDtoStubs.add(TechStub.getTechStub());
         return new User(
+                0L,
                 "username",
                 "password",
                 LocalDate.of(2000,01,01),

@@ -1,15 +1,23 @@
 package com.testconfigurationpoc.controller;
 
+import com.testconfigurationpoc.data.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.domain.entity.User;
+import com.testconfigurationpoc.domain.service.IUserService;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 public class UserController {
 
-    @PostMapping("/user")
-    public User GetUserData () {
-        User user = new User("username", "password", null, null);
-        return user;
+    private final IUserService userService;
+
+    @PostMapping("/user/create")
+    public User createUser (@RequestBody CreateUserRequestDto createUserRequestDto) {
+        System.out.println("teste!");
+        return userService.createUser(createUserRequestDto);
     }
 }

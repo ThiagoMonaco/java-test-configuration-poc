@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS tech (
+    id serial PRIMARY KEY,
+    tx_name VARCHAR(32) NOT NULL
+)
