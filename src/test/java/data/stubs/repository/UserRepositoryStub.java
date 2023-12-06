@@ -1,4 +1,4 @@
-package data.repository;
+package data.stubs.repository;
 
 import com.testconfigurationpoc.data.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;

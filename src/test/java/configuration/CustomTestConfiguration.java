@@ -7,7 +7,7 @@ import com.testconfigurationpoc.data.services.ValidatorServiceImpl;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.domain.service.IValidatorService;
-import data.repository.UserRepositoryStub;
+import data.stubs.repository.UserRepositoryStub;
 import data.stubs.mappers.DateMapperStub;
 import data.stubs.service.ValidatorServiceStub;
 import org.springframework.boot.test.context.TestConfiguration;
