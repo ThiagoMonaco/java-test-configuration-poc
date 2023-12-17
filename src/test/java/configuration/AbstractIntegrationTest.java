@@ -9,7 +9,6 @@ public class AbstractIntegrationTest {
     @ClassRule
     public static PostgreSQLContainer<CustomPosgresqlTestContainer> postgreSQLContainer = CustomPosgresqlTestContainer.getInstance();
 
-
     static {
         postgreSQLContainer.start();
     }

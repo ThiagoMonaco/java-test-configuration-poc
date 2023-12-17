@@ -1,5 +1,7 @@
 package configuration;
 
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 
@@ -15,7 +17,6 @@ public class CustomPosgresqlTestContainer extends PostgreSQLContainer<CustomPosg
         if (container == null) {
             container = new CustomPosgresqlTestContainer();
             container.withReuse(true);
-            container.withInitScript();
         }
         return container;
     }
@@ -27,6 +28,15 @@ public class CustomPosgresqlTestContainer extends PostgreSQLContainer<CustomPosg
         System.setProperty("DB_URL", container.getJdbcUrl());
         System.setProperty("DB_USERNAME", container.getUsername());
         System.setProperty("DB_PASSWORD", container.getPassword());
+    }
+
+    @DynamicPropertySource
+    static void registerPgProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url",
+                () -> String.format("jdbc:postgresql://localhost:%d/prop", container.getFirstMappedPort()));
+        registry.add("spring.datasource.username", () -> "postgres");
+        registry.add("spring.datasource.password", () -> "pass");
+        registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
     }
 
     static {

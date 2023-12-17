@@ -7,14 +7,24 @@ import com.testconfigurationpoc.data.services.ValidatorServiceImpl;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.domain.service.IValidatorService;
-import data.stubs.repository.UserRepositoryStub;
 import data.stubs.mappers.DateMapperStub;
+import data.stubs.repository.UserRepositoryStub;
 import data.stubs.service.ValidatorServiceStub;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+
 
 @TestConfiguration
+@AllArgsConstructor
+//@ComponentScan(basePackages = {"data.stubs"})
 public class CustomTestConfiguration {
+
+//    private final UserRepository userRepositoryStub;
 
     @Bean
     public IValidatorService validatorServiceStub() {
@@ -46,6 +56,6 @@ public class CustomTestConfiguration {
 
     @Bean
     public UserRepository userRepositoryStub() {
-        return new UserRepositoryStub();
+        return spy(UserRepositoryStub.class);
     }
 }
