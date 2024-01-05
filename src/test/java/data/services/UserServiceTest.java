@@ -6,7 +6,7 @@ import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.domain.service.IValidatorService;
-import configuration.CustomTestConfiguration;
+import configuration.BasicTestConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = CustomTestConfiguration.class)
+@ContextConfiguration(classes = BasicTestConfiguration.class)
 public class UserServiceTest {
 
     @Autowired

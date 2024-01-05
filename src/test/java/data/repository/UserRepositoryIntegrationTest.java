@@ -30,7 +30,7 @@ public class UserRepositoryIntegrationTest{
     private UserRepository userRepository;
 
     @Test
-    public void test() {
+    public void shouldSaveUserCorrectly() {
         User user = User.builder()
                         .birthDate(LocalDate.now())
                         .username("username")
