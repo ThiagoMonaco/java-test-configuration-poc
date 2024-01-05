@@ -1,7 +1,7 @@
-package data.services;
+package services;
 
-import com.testconfigurationpoc.data.dto.CreateUserRequestDto;
-import com.testconfigurationpoc.data.repository.UserRepository;
+import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;

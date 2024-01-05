@@ -1,4 +1,4 @@
-package data.stubs.mappers;
+package stubs.mappers;
 
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import org.springframework.boot.test.context.TestComponent;

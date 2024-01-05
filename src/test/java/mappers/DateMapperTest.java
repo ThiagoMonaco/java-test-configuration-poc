@@ -1,4 +1,4 @@
-package data.mappers;
+package mappers;
 
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import configuration.BasicTestConfiguration;

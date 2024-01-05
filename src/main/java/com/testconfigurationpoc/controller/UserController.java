@@ -1,6 +1,6 @@
 package com.testconfigurationpoc.controller;
 
-import com.testconfigurationpoc.data.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.service.IUserService;
 import lombok.AllArgsConstructor;
