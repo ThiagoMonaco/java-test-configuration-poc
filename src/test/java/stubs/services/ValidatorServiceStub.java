@@ -1,4 +1,4 @@
-package data.stubs.service;
+package stubs.services;
 
 import com.testconfigurationpoc.domain.service.IValidatorService;
 import org.springframework.boot.test.context.TestComponent;

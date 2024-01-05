@@ -1,4 +1,4 @@
-package com.testconfigurationpoc.data.services;
+package com.testconfigurationpoc.services;
 
 import com.testconfigurationpoc.domain.service.IValidatorService;
 import com.testconfigurationpoc.helpers.regex.Regex;

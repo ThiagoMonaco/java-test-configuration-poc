@@ -1,4 +1,4 @@
-package com.testconfigurationpoc.data.mappers;
+package com.testconfigurationpoc.mappers;
 
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import org.springframework.stereotype.Component;

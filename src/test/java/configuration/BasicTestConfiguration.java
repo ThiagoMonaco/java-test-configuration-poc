@@ -1,18 +1,16 @@
 package configuration;
 
-import com.testconfigurationpoc.data.mappers.DateMapperImpl;
-import com.testconfigurationpoc.data.repository.UserRepository;
-import com.testconfigurationpoc.data.services.UserServiceImpl;
-import com.testconfigurationpoc.data.services.ValidatorServiceImpl;
+import com.testconfigurationpoc.mappers.DateMapperImpl;
+import com.testconfigurationpoc.repository.UserRepository;
+import com.testconfigurationpoc.services.UserServiceImpl;
+import com.testconfigurationpoc.services.ValidatorServiceImpl;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.domain.service.IValidatorService;
-import data.stubs.mappers.DateMapperStub;
-import data.stubs.repository.UserRepositoryStub;
-import data.stubs.service.ValidatorServiceStub;
+import stubs.mappers.DateMapperStub;
+import stubs.repository.UserRepositoryStub;
+import stubs.services.ValidatorServiceStub;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 

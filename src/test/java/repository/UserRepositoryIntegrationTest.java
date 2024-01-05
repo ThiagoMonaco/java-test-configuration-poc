@@ -1,7 +1,7 @@
-package data.repository;
+package repository;
 
 import com.testconfigurationpoc.JavaTestConfigurationPocApplication;
-import com.testconfigurationpoc.data.repository.UserRepository;
+import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import configuration.CustomPosgresqlTestContainer;
 import configuration.IntegrationTestConfiguration;

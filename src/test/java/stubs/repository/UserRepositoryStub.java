@@ -1,6 +1,6 @@
-package data.stubs.repository;
+package stubs.repository;
 
-import com.testconfigurationpoc.data.repository.UserRepository;
+import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import org.springframework.stereotype.Repository;
 

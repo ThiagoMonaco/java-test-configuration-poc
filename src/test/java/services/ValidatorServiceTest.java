@@ -1,4 +1,4 @@
-package data.services;
+package services;
 
 import com.testconfigurationpoc.domain.service.IValidatorService;
 import configuration.BasicTestConfiguration;
