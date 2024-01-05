@@ -6,7 +6,7 @@ import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.domain.service.IValidatorService;
-import configuration.CustomTestConfiguration;
+import configuration.BasicTestConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,12 +19,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = CustomTestConfiguration.class)
+@ContextConfiguration(classes = BasicTestConfiguration.class)
 public class UserServiceTest {
 
     @Autowired
@@ -120,5 +119,19 @@ public class UserServiceTest {
         });
 
         assertEquals("Test Error", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should return user correctly")
+    void shouldReturnUserIfEverythingIsOk() {
+        CreateUserRequestDto userDto = mockCreateUserRequestDto();
+
+        User result = userService.createUser(userDto);
+
+        assertEquals(userDto.getUsername(), result.getUsername());
+        assertEquals(userDto.getPassword(), result.getPassword());
+        assertEquals(LocalDate.of(2000, 1, 1), result.getBirthDate());
+        assertEquals(List.of(), result.getFavoriteTechs());
+        assertNotNull(result.getId());
     }
 }

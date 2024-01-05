@@ -1,7 +1,7 @@
 package data.services;
 
 import com.testconfigurationpoc.domain.service.IValidatorService;
-import configuration.CustomTestConfiguration;
+import configuration.BasicTestConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = CustomTestConfiguration.class)
+@ContextConfiguration(classes = BasicTestConfiguration.class)
 public class ValidatorServiceTest {
 
     @Autowired

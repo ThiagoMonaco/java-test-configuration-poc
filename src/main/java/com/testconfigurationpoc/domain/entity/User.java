@@ -28,6 +28,6 @@ public class User {
     @Column(name = "dt_birthday")
     private LocalDate birthDate;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Tech> favoriteTechs;
 }
