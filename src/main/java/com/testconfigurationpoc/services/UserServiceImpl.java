@@ -1,6 +1,7 @@
 package com.testconfigurationpoc.services;
 
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
@@ -26,7 +27,9 @@ public class UserServiceImpl implements IUserService {
         if(!validatorService.hasMoreThanThreeCharacters(request.getUsername())) {
             throw new InvalidUsernameException();
         }
-        validatorService.validatePassword(request.getPassword());
+        if(!validatorService.validatePassword(request.getPassword())) {
+            throw new InvalidPasswordException();
+        }
         LocalDate birthDateLocalDate = dateMapper.mapStringToLocalDate(request.getBirthDate());
         validatorService.validateBirthDateIsOlderThanEighteen(birthDateLocalDate);
         User result = userRepository.save(User

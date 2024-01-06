@@ -1,6 +1,7 @@
 package services;
 
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
@@ -134,6 +135,17 @@ public class UserServiceTest {
         assertEquals(LocalDate.of(2000, 1, 1), result.getBirthDate());
         assertEquals(List.of(), result.getFavoriteTechs());
         assertNotNull(result.getId());
+    }
+
+    @Test
+    @DisplayName("Should throw invalidPasswordException if password is invalid")
+    void shouldThrowInvalidPasswordExceptionIfPasswordIsInvalid() {
+        CreateUserRequestDto userDto = mockCreateUserRequestDto();
+        when(validatorServiceStub.validatePassword(userDto.getPassword())).thenReturn(false);
+        Exception exception = assertThrows(InvalidPasswordException.class, () -> {
+            userService.createUser(userDto);
+        });
+        assertEquals("Invalid password", exception.getMessage());
     }
 
     @Test
