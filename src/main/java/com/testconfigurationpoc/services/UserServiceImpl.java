@@ -3,6 +3,7 @@ package com.testconfigurationpoc.services;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
+import com.testconfigurationpoc.exceptions.UserUnderEighteenException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
@@ -31,7 +32,10 @@ public class UserServiceImpl implements IUserService {
             throw new InvalidPasswordException();
         }
         LocalDate birthDateLocalDate = dateMapper.mapStringToLocalDate(request.getBirthDate());
-        validatorService.validateBirthDateIsOlderThanEighteen(birthDateLocalDate);
+
+        if(!validatorService.validateBirthDateIsOlderThanEighteen(birthDateLocalDate)) {
+            throw new UserUnderEighteenException();
+        };
         User result = userRepository.save(User
                 .builder()
                 .username(request.getUsername())

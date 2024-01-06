@@ -3,6 +3,7 @@ package services;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
+import com.testconfigurationpoc.exceptions.UserUnderEighteenException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
@@ -146,6 +147,19 @@ public class UserServiceTest {
             userService.createUser(userDto);
         });
         assertEquals("Invalid password", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should throw UserUnderEighteenException if user age is under 18")
+    void shouldThrowUserUnderEighteenExceptionIfUserAgeIsUnderEighteen() {
+        CreateUserRequestDto userDto = mockCreateUserRequestDto();
+
+        when(validatorServiceStub.validateBirthDateIsOlderThanEighteen(any())).thenReturn(false);
+
+        Exception exception = assertThrows(UserUnderEighteenException.class, () -> {
+            userService.createUser(userDto);
+        });
+        assertEquals("User age is under 18", exception.getMessage());
     }
 
     @Test
