@@ -1,6 +1,7 @@
 package services;
 
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.exceptions.InvalidUsernameException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
@@ -65,7 +66,7 @@ public class UserServiceTest {
 
         when(validatorServiceStub.hasMoreThanThreeCharacters(userDto.getUsername())).thenReturn(false);
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        Exception exception = assertThrows(InvalidUsernameException.class, () -> {
             userService.createUser(userDto);
         });
 
@@ -133,5 +134,12 @@ public class UserServiceTest {
         assertEquals(LocalDate.of(2000, 1, 1), result.getBirthDate());
         assertEquals(List.of(), result.getFavoriteTechs());
         assertNotNull(result.getId());
+    }
+
+    @Test
+    @DisplayName("Should throw 404 user not found exception if user is not found")
+    void shouldReturn404NullIfUserIsNotFound() {
+        User result = userService.getUserById(1L);
+        assertNull(result);
     }
 }

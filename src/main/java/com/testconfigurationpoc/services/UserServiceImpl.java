@@ -1,6 +1,7 @@
 package com.testconfigurationpoc.services;
 
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.exceptions.InvalidUsernameException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User createUser(CreateUserRequestDto request) {
         if(!validatorService.hasMoreThanThreeCharacters(request.getUsername())) {
-            throw new RuntimeException("Username should have more than three characters");
+            throw new InvalidUsernameException();
         }
         validatorService.validatePassword(request.getPassword());
         LocalDate birthDateLocalDate = dateMapper.mapStringToLocalDate(request.getBirthDate());
@@ -38,5 +39,10 @@ public class UserServiceImpl implements IUserService {
         );
 
         return result;
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return null;
     }
 }
