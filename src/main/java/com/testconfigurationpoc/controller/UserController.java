@@ -6,6 +6,8 @@ import com.testconfigurationpoc.domain.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class UserController {
@@ -21,5 +23,11 @@ public class UserController {
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
+
+    @GetMapping("/user/all")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
 
 }

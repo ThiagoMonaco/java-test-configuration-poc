@@ -187,4 +187,32 @@ public class UserServiceTest {
 
         assertEquals(expectedUser, result);
     }
+
+    @Test
+    @DisplayName("Should return all users correctly")
+    void shouldReturnAllUsersCorrectly() {
+        List<User> expectedUsers = List.of(getUserStub());
+        when(userRepositoryStub.findAll()).thenReturn(expectedUsers);
+
+        List<User> result = userService.getAllUsers();
+
+        assertEquals(expectedUsers, result);
+    }
+
+    @Test
+    @DisplayName("Should call findAll once")
+    void shouldCallFindAllOnce() {
+        userService.getAllUsers();
+        verify(userRepositoryStub, times(1)).findAll();
+    }
+
+    @Test
+    @DisplayName("Should return empty list if no users are found")
+    void shouldReturnEmptyListIfNoUsersAreFound() {
+        when(userRepositoryStub.findAll()).thenReturn(List.of());
+
+        List<User> result = userService.getAllUsers();
+
+        assertEquals(List.of(), result);
+    }
 }

@@ -10,7 +10,7 @@ public interface IUserService {
 
     User getUserById(Long id);
 
-//    List<User> getAllUsers();
+    List<User> getAllUsers();
 
 //    User updateUser(CreateUserRequestDto request, Long id);
 //

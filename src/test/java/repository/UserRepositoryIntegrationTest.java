@@ -29,6 +29,8 @@ public class UserRepositoryIntegrationTest{
     @Autowired
     private UserRepository userRepository;
 
+
+    // I know this test is useless, but i just wanted simulate how a integration test would be
     @Test
     public void shouldSaveUserCorrectly() {
         User user = User.builder()
