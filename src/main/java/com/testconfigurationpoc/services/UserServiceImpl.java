@@ -3,6 +3,7 @@ package com.testconfigurationpoc.services;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
+import com.testconfigurationpoc.exceptions.UserNotFoundException;
 import com.testconfigurationpoc.exceptions.UserUnderEighteenException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
@@ -50,6 +51,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUserById(Long id) {
-        return null;
+        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }

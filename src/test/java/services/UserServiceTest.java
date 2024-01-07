@@ -3,6 +3,7 @@ package services;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
+import com.testconfigurationpoc.exceptions.UserNotFoundException;
 import com.testconfigurationpoc.exceptions.UserUnderEighteenException;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
@@ -21,7 +22,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
+import static domain.stub.entity.UserStub.getUserStub;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -165,7 +168,23 @@ public class UserServiceTest {
     @Test
     @DisplayName("Should throw 404 user not found exception if user is not found")
     void shouldReturn404NullIfUserIsNotFound() {
+        when(userRepositoryStub.findById(1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(UserNotFoundException.class, () -> {
+            userService.getUserById(1L);
+        });
+
+        assertEquals("User not found", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should return user if user is found")
+    void shouldReturnUserIfUserIsFound() {
+        User expectedUser = getUserStub();
+        when(userRepositoryStub.findById(1L)).thenReturn(Optional.of(expectedUser));
+
         User result = userService.getUserById(1L);
-        assertNull(result);
+
+        assertEquals(expectedUser, result);
     }
 }
