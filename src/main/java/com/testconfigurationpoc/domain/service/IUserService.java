@@ -1,5 +1,6 @@
 package com.testconfigurationpoc.domain.service;
 
+import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.domain.entity.User;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public interface IUserService {
     User createUser(CreateUserRequestDto request);
 
-    User getUserById(Long id);
+    BasicUserData getUserById(Long id);
 
     List<User> getAllUsers();
 

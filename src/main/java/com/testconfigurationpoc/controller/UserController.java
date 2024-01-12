@@ -1,5 +1,6 @@
 package com.testconfigurationpoc.controller;
 
+import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.service.IUserService;
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/user/id/{id}")
-    public User getUserById(@PathVariable Long id) {
+    public BasicUserData getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 

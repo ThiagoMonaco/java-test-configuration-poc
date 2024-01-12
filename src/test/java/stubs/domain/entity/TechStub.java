@@ -1,4 +1,4 @@
-package domain.stub.entity;
+package stubs.domain.entity;
 
 import com.testconfigurationpoc.domain.entity.Tech;
 

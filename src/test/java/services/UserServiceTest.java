@@ -1,5 +1,6 @@
 package services;
 
+import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
@@ -19,12 +20,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import stubs.domain.projection.BasicUserDataStub;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static domain.stub.entity.UserStub.getUserStub;
+import static stubs.domain.entity.UserStub.getUserStub;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -180,10 +182,17 @@ public class UserServiceTest {
     @Test
     @DisplayName("Should return user if user is found")
     void shouldReturnUserIfUserIsFound() {
-        User expectedUser = getUserStub();
-        when(userRepositoryStub.findById(1L)).thenReturn(Optional.of(expectedUser));
+        User expectedUserData = getUserStub();
+        BasicUserData expectedUser = BasicUserDataStub
+                .builder()
+                .id(expectedUserData.getId())
+                .username(expectedUserData.getUsername())
+                .birthDate(expectedUserData.getBirthDate())
+                .build();
 
-        User result = userService.getUserById(1L);
+        when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.of(expectedUser));
+
+        BasicUserData result = userService.getUserById(1L);
 
         assertEquals(expectedUser, result);
     }

@@ -1,7 +1,8 @@
-package domain.stub.entity;
+package stubs.domain.entity;
 
 import com.testconfigurationpoc.domain.entity.Tech;
 import com.testconfigurationpoc.domain.entity.User;
+import stubs.domain.entity.TechStub;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

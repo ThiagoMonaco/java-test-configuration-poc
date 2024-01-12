@@ -1,5 +1,6 @@
 package com.testconfigurationpoc.services;
 
+import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
@@ -50,8 +51,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    public BasicUserData getUserById(Long id) {
+        return userRepository.findUserById(id).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
