@@ -1,8 +1,10 @@
 package stubs.repository;
 
+import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import org.springframework.stereotype.Repository;
+import stubs.domain.projection.BasicUserDataStub;
 
 import java.util.List;
 
@@ -21,12 +23,9 @@ public interface UserRepositoryStub extends UserRepository {
     }
 
     @Override
-    default List<User> findAll() {
-        return List.of(User.builder()
+    default List<BasicUserData> findAllBy() {
+        return List.of(BasicUserDataStub.builder()
                 .username("username")
-                .favoriteTechs(List.of())
-                .password("password")
-                .birthDate(null)
                 .id(1L)
                 .build());
     }

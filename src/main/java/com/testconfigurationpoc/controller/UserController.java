@@ -4,6 +4,7 @@ import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.service.IUserService;
+import com.testconfigurationpoc.dto.CreateUserResponseDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class UserController {
     private final IUserService userService;
 
     @PostMapping("/user/create")
-    public User createUser (@RequestBody CreateUserRequestDto createUserRequestDto) {
+    public CreateUserResponseDto createUser (@RequestBody CreateUserRequestDto createUserRequestDto) {
         return userService.createUser(createUserRequestDto);
     }
 
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/user/all")
-    public List<User> getAllUsers() {
+    public List<BasicUserData> getAllUsers() {
         return userService.getAllUsers();
     }
 

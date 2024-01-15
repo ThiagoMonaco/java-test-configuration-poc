@@ -2,6 +2,7 @@ package com.testconfigurationpoc.services;
 
 import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.dto.CreateUserResponseDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
 import com.testconfigurationpoc.exceptions.UserNotFoundException;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
 
     @Override
-    public User createUser(CreateUserRequestDto request) {
+    public CreateUserResponseDto createUser(CreateUserRequestDto request) {
         if(!validatorService.hasMoreThanThreeCharacters(request.getUsername())) {
             throw new InvalidUsernameException();
         }
@@ -47,7 +48,11 @@ public class UserServiceImpl implements IUserService {
                 .build()
         );
 
-        return result;
+        return CreateUserResponseDto
+                .builder()
+                .id(result.getId())
+                .username(result.getUsername())
+                .build();
     }
 
     @Override
@@ -56,7 +61,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<BasicUserData> getAllUsers() {
+        return userRepository.findAllBy();
     }
 }

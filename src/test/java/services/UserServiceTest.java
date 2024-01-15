@@ -2,6 +2,7 @@ package services;
 
 import com.testconfigurationpoc.domain.projection.BasicUserData;
 import com.testconfigurationpoc.dto.CreateUserRequestDto;
+import com.testconfigurationpoc.dto.CreateUserResponseDto;
 import com.testconfigurationpoc.exceptions.InvalidPasswordException;
 import com.testconfigurationpoc.exceptions.InvalidUsernameException;
 import com.testconfigurationpoc.exceptions.UserNotFoundException;
@@ -134,12 +135,9 @@ public class UserServiceTest {
     void shouldReturnUserIfEverythingIsOk() {
         CreateUserRequestDto userDto = mockCreateUserRequestDto();
 
-        User result = userService.createUser(userDto);
+        CreateUserResponseDto result = userService.createUser(userDto);
 
         assertEquals(userDto.getUsername(), result.getUsername());
-        assertEquals(userDto.getPassword(), result.getPassword());
-        assertEquals(LocalDate.of(2000, 1, 1), result.getBirthDate());
-        assertEquals(List.of(), result.getFavoriteTechs());
         assertNotNull(result.getId());
     }
 
@@ -200,10 +198,17 @@ public class UserServiceTest {
     @Test
     @DisplayName("Should return all users correctly")
     void shouldReturnAllUsersCorrectly() {
-        List<User> expectedUsers = List.of(getUserStub());
-        when(userRepositoryStub.findAll()).thenReturn(expectedUsers);
+        User expectedUserData = getUserStub();
+        List<BasicUserData> expectedUsers = List.of(
+                BasicUserDataStub
+                        .builder()
+                        .username(expectedUserData.getUsername())
+                        .id(expectedUserData.getId())
+                        .build()
+        );
+        when(userRepositoryStub.findAllBy()).thenReturn(expectedUsers);
 
-        List<User> result = userService.getAllUsers();
+        List<BasicUserData> result = userService.getAllUsers();
 
         assertEquals(expectedUsers, result);
     }
@@ -212,15 +217,15 @@ public class UserServiceTest {
     @DisplayName("Should call findAll once")
     void shouldCallFindAllOnce() {
         userService.getAllUsers();
-        verify(userRepositoryStub, times(1)).findAll();
+        verify(userRepositoryStub, times(1)).findAllBy();
     }
 
     @Test
     @DisplayName("Should return empty list if no users are found")
     void shouldReturnEmptyListIfNoUsersAreFound() {
-        when(userRepositoryStub.findAll()).thenReturn(List.of());
+        when(userRepositoryStub.findAllBy()).thenReturn(List.of());
 
-        List<User> result = userService.getAllUsers();
+        List<BasicUserData> result = userService.getAllUsers();
 
         assertEquals(List.of(), result);
     }
