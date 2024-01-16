@@ -12,6 +12,7 @@ import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.mapper.IDateMapper;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.domain.service.IValidatorService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +64,19 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<BasicUserData> getAllUsers() {
         return userRepository.findAllBy();
+    }
+
+    @Override
+    @Transactional
+    public void updateUsername(Long id, String username) {
+        if(!validatorService.hasMoreThanThreeCharacters(username)) {
+            throw new InvalidUsernameException();
+        }
+
+        if(userRepository.findUserById(id).isEmpty()) {
+            throw new UserNotFoundException();
+        };
+
+        userRepository.updateUsernameById(username, id);
     }
 }

@@ -14,7 +14,7 @@ public interface IUserService {
 
     List<BasicUserData> getAllUsers();
 
-//    User updateUser(CreateUserRequestDto request, Long id);
+    void updateUsername(Long id, String username);
 //
 //    void deleteUser(Long id);
 }

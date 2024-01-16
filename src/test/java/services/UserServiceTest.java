@@ -229,4 +229,26 @@ public class UserServiceTest {
 
         assertEquals(List.of(), result);
     }
+
+    @Test
+    @DisplayName("Should throw error if username is invalid")
+    void shouldThrowErrorIfUsernameIsInvalid() {
+        when(validatorServiceStub.hasMoreThanThreeCharacters("a")).thenReturn(false);
+
+        Exception exception = assertThrows(InvalidUsernameException.class, () -> {
+            userService.updateUsername(1L, "a");
+        });
+        assertEquals("Username should have more than three characters", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should throw error if user is not found")
+    void shouldThrowErrorIfUserIsNotFound() {
+        when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(UserNotFoundException.class, () -> {
+            userService.updateUsername(1L, "username");
+        });
+        assertEquals("User not found", exception.getMessage());
+    }
 }

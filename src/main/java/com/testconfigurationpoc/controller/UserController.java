@@ -5,6 +5,7 @@ import com.testconfigurationpoc.dto.CreateUserRequestDto;
 import com.testconfigurationpoc.domain.entity.User;
 import com.testconfigurationpoc.domain.service.IUserService;
 import com.testconfigurationpoc.dto.CreateUserResponseDto;
+import com.testconfigurationpoc.dto.UpdateUserRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,11 @@ public class UserController {
     @GetMapping("/user/all")
     public List<BasicUserData> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @PutMapping("/user/update/{id}")
+    public void updateUserById(@PathVariable Long id, @RequestBody UpdateUserRequestDto user) {
+        userService.updateUsername(id, user.getUsername());
     }
 
 

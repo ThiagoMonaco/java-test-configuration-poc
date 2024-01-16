@@ -6,6 +6,8 @@ import com.testconfigurationpoc.repository.UserRepository;
 import com.testconfigurationpoc.domain.entity.User;
 import configuration.CustomPosgresqlTestContainer;
 import configuration.IntegrationTestConfiguration;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,8 +34,9 @@ public class UserRepositoryIntegrationTest{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EntityManager entityManager;
 
-    // I know this test is useless, but i just wanted simulate how a integration test would be
     @Test
     public void shouldSaveUserCorrectly() {
         User user = User.builder()
@@ -73,5 +76,27 @@ public class UserRepositoryIntegrationTest{
         assertEquals(user.getBirthDate(), result.getBirthDate());
         assertEquals(user.getFavoriteTechs().size(), result.getFavoriteTechs().size());
         assertNotNull(result.getId());
+    }
+
+    @Test
+    @DisplayName("Should update username correctly")
+    @Transactional
+    void shouldUpdateUsernameCorrectly() {
+        User user = User.builder()
+                        .birthDate(LocalDate.now())
+                        .username("username")
+                        .password("password")
+                        .favoriteTechs(List.of())
+                        .build();
+
+        User savedUser = userRepository.save(user);
+
+        userRepository.updateUsernameById("newUsername", savedUser.getId());
+        entityManager.flush();
+        entityManager.clear();
+
+        User result = userRepository.findById(savedUser.getId()).get();
+
+        assertEquals("newUsername", result.getUsername());
     }
 }
