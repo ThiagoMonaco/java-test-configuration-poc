@@ -242,7 +242,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw error if user is not found")
+    @DisplayName("Should throw error if user is not found when updating user")
     void shouldThrowErrorIfUserIsNotFound() {
         when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.empty());
 
@@ -250,5 +250,32 @@ public class UserServiceTest {
             userService.updateUsername(1L, "username");
         });
         assertEquals("User not found", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should call updateUsernameById once")
+    void shouldCallUpdateUsernameByIdOnce() {
+        when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.of(BasicUserDataStub.builder().build()));
+        userService.updateUsername(1L, "username");
+        verify(userRepositoryStub, times(1)).updateUsernameById("username", 1L);
+    }
+
+    @Test
+    @DisplayName("Should throw error if user is not found when deleting user")
+    void shouldThrowErrorIfUserIsNotFoundWhenDeletingUser() {
+        when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(UserNotFoundException.class, () -> {
+            userService.deleteUser(1L);
+        });
+        assertEquals("User not found", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should call deleteById once")
+    void shouldCallDeleteByIdOnce() {
+        when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.of(BasicUserDataStub.builder().build()));
+        userService.deleteUser(1L);
+        verify(userRepositoryStub, times(1)).deleteById(1L);
     }
 }

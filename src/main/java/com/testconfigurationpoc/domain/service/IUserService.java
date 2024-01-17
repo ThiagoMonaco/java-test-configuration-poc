@@ -15,6 +15,6 @@ public interface IUserService {
     List<BasicUserData> getAllUsers();
 
     void updateUsername(Long id, String username);
-//
-//    void deleteUser(Long id);
+
+    void deleteUser(Long id);
 }

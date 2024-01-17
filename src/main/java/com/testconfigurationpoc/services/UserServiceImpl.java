@@ -79,4 +79,14 @@ public class UserServiceImpl implements IUserService {
 
         userRepository.updateUsernameById(username, id);
     }
+
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
+        if(userRepository.findUserById(id).isEmpty()) {
+            throw new UserNotFoundException();
+        };
+
+        userRepository.deleteById(id);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import stubs.domain.projection.BasicUserDataStub;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -28,5 +29,24 @@ public interface UserRepositoryStub extends UserRepository {
                 .username("username")
                 .id(1L)
                 .build());
+    }
+
+    @Override
+    default Optional<BasicUserData> findUserById(long id) {
+       return Optional.of(BasicUserDataStub
+            .builder()
+            .username("username")
+            .id(id)
+            .build());
+    }
+
+    @Override
+    default void updateUsernameById(String username, Long id) {
+        // do nothing
+    }
+
+    @Override
+    default void deleteById(Long id) {
+        // do nothing
     }
 }
