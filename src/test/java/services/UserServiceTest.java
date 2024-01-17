@@ -168,7 +168,7 @@ public class UserServiceTest {
     @Test
     @DisplayName("Should throw 404 user not found exception if user is not found")
     void shouldReturn404NullIfUserIsNotFound() {
-        when(userRepositoryStub.findById(1L)).thenReturn(Optional.empty());
+        when(userRepositoryStub.findUserById(1L)).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(UserNotFoundException.class, () -> {
             userService.getUserById(1L);
