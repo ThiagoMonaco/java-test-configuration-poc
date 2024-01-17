@@ -3,8 +3,11 @@ services:
         build: .
         ports:
         - "8080:8080"
+        depends_on:
+            db:
+                condition: service_started
     db:
-        container_name: postgres-container
+        container_name: pgdb
         image: postgres:16.0
         restart: always
         environment:
